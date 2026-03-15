@@ -1,0 +1,589 @@
+/* ─────────────────────────────────────────────────────────────
+   Smart Healthcare CRM — Custom Styles
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Google Font ──────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────── */
+:root {
+  --primary: #10b981;
+  /* Emerald Green */
+  --primary-dark: #059669;
+  --primary-glow: rgba(16, 185, 129, 0.3);
+  --secondary: #34d399;
+  /* Light Emerald */
+  --accent: #ef4444;
+  /* Soft Red */
+  --bg-dark: #020617;
+  /* Deep Slate/Black */
+  --bg-card: #0f172a;
+  /* Slate 900 */
+  --bg-input: #1e293b;
+  /* Slate 800 */
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f8fafc;
+  /* Slate 50 */
+  --text-muted: #94a3b8;
+  /* Slate 400 */
+  --shadow-glow: 0 0 40px rgba(16, 185, 129, 0.1);
+  --radius: 14px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+/* ── Animated Background ──────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(52, 211, 153, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Main Card ────────────────────────────────────────────── */
+.auth-wrapper {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 40px 36px;
+  box-shadow: var(--shadow-glow), 0 24px 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+/* ── Logo / Brand ─────────────────────────────────────────── */
+.brand-logo {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-logo .logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  font-size: 28px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.brand-logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.brand-logo p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Section Title ────────────────────────────────────────── */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.section-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* ── Form Controls ────────────────────────────────────────── */
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text) !important;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: var(--bg-input);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30, 111, 255, 0.2);
+  color: var(--text);
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.form-text {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.78rem;
+  margin-top: 5px;
+}
+
+.form-select option {
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ── Input Group ─────────────────────────────────────────── */
+.input-group-text {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 10px 0 0 10px !important;
+}
+
+.input-group .form-control {
+  border-radius: 0 10px 10px 0 !important;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary-custom {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary-custom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.2s;
+}
+
+.btn-primary-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(16, 185, 129, 0.4);
+}
+
+.btn-primary-custom:hover::after {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-primary-custom:active {
+  transform: translateY(0);
+}
+
+.btn-primary-custom:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-outline-custom {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.btn-outline-custom:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+/* ── Alert / Messages ─────────────────────────────────────── */
+.alert-custom {
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.87rem;
+  font-weight: 500;
+  display: none;
+  margin-bottom: 20px;
+}
+
+.alert-success-custom {
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  color: var(--secondary);
+}
+
+.alert-error-custom {
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: var(--accent);
+}
+
+.alert-info-custom {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--primary);
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Link ─────────────────────────────────────────────────── */
+.link-primary {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.link-primary:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+/* ── Spinner ──────────────────────────────────────────────── */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ── Appointment Card ─────────────────────────────────────── */
+.appointment-page {
+  max-width: 860px;
+}
+
+.appt-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 16px 16px 0 0;
+  padding: 28px 36px;
+}
+
+.appt-body {
+  padding: 32px 36px;
+}
+
+/* ── Doctor Card ──────────────────────────────────────────── */
+.doctor-card {
+  background: var(--bg-input);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.doctor-card:hover,
+.doctor-card.selected {
+  border-color: var(--primary);
+  background: rgba(30, 111, 255, 0.08);
+}
+
+.doctor-card .avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 8px;
+}
+
+.doctor-card .name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.doctor-card .spec {
+  font-size: 0.75rem;
+  color: var(--secondary);
+}
+
+/* ── Appointment History ──────────────────────────────────── */
+.appt-list-item {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: border-color var(--transition);
+}
+
+.appt-list-item:hover {
+  border-color: var(--primary);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-submitted {
+  background: rgba(30, 111, 255, 0.15);
+  color: var(--primary);
+}
+
+.status-completed {
+  background: rgba(0, 212, 170, 0.15);
+  color: var(--secondary);
+}
+
+.status-cancelled {
+  background: rgba(255, 107, 107, 0.15);
+  color: var(--accent);
+}
+
+/* ── Responsive wide form ─────────────────────────────────── */
+@media (max-width: 600px) {
+
+  .auth-card,
+  .appt-body {
+    padding: 28px 20px;
+  }
+
+  .appt-header {
+    padding: 20px;
+  }
+}
+
+/* ── Floating label animation ─────────────────────────────── */
+.form-floating>.form-control,
+.form-floating>.form-select {
+  height: auto;
+  padding-top: 1.25rem;
+}
+
+/* ── Step Badge ───────────────────────────────────────────── */
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.step-title {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Wide card (register / appointment) ───────────────────── */
+body.wide {
+  align-items: flex-start;
+  padding: 30px 16px;
+}
+
+.wide-card-wrapper {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.wide-card-wrapper.xl {
+  max-width: 900px;
+}
+
+/* ── Global Header Bar ────────────────────────────────────── */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--primary);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.15);
+  z-index: 2000;
+  display: flex !important;
+  align-items: center;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform var(--transition);
+}
+
+.header-brand:hover {
+  transform: scale(1.02);
+}
+
+.header-brand .logo-emoji {
+  font-size: 1.6rem;
+}
+
+.header-brand .brand-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.6px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: opacity var(--transition);
+  opacity: 0.8;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: var(--secondary);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.btn-logout {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-logout:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Base body adjustment for fixed header */
+body {
+  padding-top: 100px !important;
+  align-items: flex-start !important;
+  padding-bottom: 50px;
+}
+
+body.wide {
+  padding-top: 120px !important;
+}
