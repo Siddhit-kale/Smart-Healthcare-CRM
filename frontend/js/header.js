@@ -8,7 +8,7 @@
     <header class="main-header">
         <div class="header-container">
             <a href="index.html" class="header-brand">
-                <span class="logo-emoji">🏥</span>
+                <img src="images/health-care-logo_607140-1066.avif" alt="Logo" class="logo-img">
                 <span class="brand-text">Healthcare</span>
             </a>
             <nav class="header-nav" id="headerNav">

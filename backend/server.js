@@ -31,9 +31,9 @@ app.use("/api", appointmentRoutes);
 // ── Health check ───────────────────────────────────────────
 app.get("/health", (req, res) => res.json({ status: "ok", time: new Date() }));
 
-// ── Root → serve login page ───────────────────────────────
+// ── Root → serve homepage ─────────────────────────────────
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "frontend", "login.html"));
+    res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
 });
 
 // ── 404 handler ────────────────────────────────────────────
@@ -50,12 +50,7 @@ app.use((err, req, res, next) => {
     try {
         await initCosmosDB();
         app.listen(PORT, () => {
-            console.log(`\n🏥  Smart Healthcare CRM running at http://localhost:${PORT}`);
-            console.log(`📋  API Docs:`);
-            console.log(`    POST /api/login`);
-            console.log(`    POST /api/register`);
-            console.log(`    POST /api/appointment`);
-            console.log(`    GET  /api/appointments/:patientId\n`);
+            console.log(`\Smart Healthcare CRM running at http://localhost:${PORT}`);
         });
     } catch (err) {
         console.error("[FATAL] Failed to start server:", err.message);
