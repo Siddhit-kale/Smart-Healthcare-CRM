@@ -49,11 +49,12 @@ app.use((err, req, res, next) => {
 (async () => {
     try {
         await initCosmosDB();
-        app.listen(PORT, () => {
-            console.log(`\Smart Healthcare CRM running at http://localhost:${PORT}`);
-        });
+        console.log("Cosmos DB connected");
     } catch (err) {
-        console.error("[FATAL] Failed to start server:", err.message);
-        process.exit(1);
+        console.error("Cosmos DB connection failed:", err.message);
     }
+
+    app.listen(PORT, () => {
+        console.log(`Smart Healthcare CRM running on port ${PORT}`);
+    });
 })();

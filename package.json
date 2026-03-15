@@ -1,0 +1,26 @@
+{
+    "name": "smart-healthcare-crm",
+    "version": "1.0.0",
+    "description": "Smart Healthcare System CRM",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js"
+    },
+    "dependencies": {
+        "@azure/cosmos": "^4.0.0",
+        "axios": "^1.6.2",
+        "bcryptjs": "^3.0.3",
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
