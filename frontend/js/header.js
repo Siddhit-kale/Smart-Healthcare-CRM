@@ -1,8 +1,3 @@
-/**
- * header.js
- * Dynamically injects the global header bar and handles logout logic.
- */
-
 (function () {
     const headerHTML = `
     <header class="main-header">
@@ -17,9 +12,6 @@
         </div>
     </header>
     `;
-
-    // Inject header styles if not already present (alternative to modifying styles.css if needed, 
-    // but we will modify styles.css for better performance)
 
     function initHeader() {
         if (document.querySelector('.main-header')) return;
@@ -59,7 +51,6 @@
         }
     }
 
-    // Initialize on DOM load
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initHeader);
     } else {

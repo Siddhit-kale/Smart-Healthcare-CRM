@@ -1,9 +1,4 @@
-// ─────────────────────────────────────────────────────────────
-// frontend/js/login.js
-// Login page logic — calls POST /api/login, redirects based on response
-// ─────────────────────────────────────────────────────────────
-
-const API_BASE = "";  // same origin; empty string means relative URL
+const API_BASE = ""; 
 
 function showAlert(type, message) {
     const box = document.getElementById("alertBox");
@@ -54,12 +49,10 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
         }
 
         if (data.redirect === "appointment") {
-            // Store patient info in sessionStorage for the appointment page
             sessionStorage.setItem("patient", JSON.stringify(data.patient));
             showAlert("success", `Welcome back, ${data.patient.name}! Redirecting...`);
             setTimeout(() => { window.location.href = "appointment.html"; }, 1200);
         } else {
-            // Patient not found — redirect to registration
             sessionStorage.setItem("loginIdentifier", identifier);
             showAlert("info", "No account found. Redirecting to registration...");
             setTimeout(() => { window.location.href = "register.html"; }, 1200);

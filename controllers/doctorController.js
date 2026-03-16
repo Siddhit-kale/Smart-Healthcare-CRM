@@ -1,6 +1,3 @@
-// ─────────────────────────────────────────────────────────────
-// controllers/doctorController.js
-// ─────────────────────────────────────────────────────────────
 const { getContainers } = require("../cosmosdb");
 
 async function getDoctors(req, res) {

@@ -1,12 +1,7 @@
-// ─────────────────────────────────────────────────────────────
-// backend/controllers/authController.js
-// Handles patient login and registration
-// ─────────────────────────────────────────────────────────────
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const { getContainers } = require("../cosmosdb");
 
-// ── POST /api/login ───────────────────────────────────────
 async function login(req, res) {
     try {
         const { identifier, password } = req.body;
@@ -28,7 +23,6 @@ async function login(req, res) {
         if (resources.length > 0) {
             const patient = resources[0];
 
-            // Verify password
             const isMatch = await bcrypt.compare(password, patient.passwordHash || "");
             if (!isMatch) {
                 return res.status(401).json({ error: "Invalid password." });
@@ -52,17 +46,14 @@ async function login(req, res) {
     }
 }
 
-// ── POST /api/register ────────────────────────────────────
 async function register(req, res) {
     try {
-        // Correctly destructure all fields including countryCode and files
         const {
             name, age, gender, bloodGroup, dob,
             phone, countryCode, email, address, medicalHistory,
             identityProof, medicalReport, password
         } = req.body;
 
-        // Validation for required fields
         if (!name || !email || !phone || !identityProof || !password) {
             return res.status(400).json({
                 error: "Name, email, phone, identity proof, and password are required."
@@ -91,7 +82,6 @@ async function register(req, res) {
             });
         }
 
-        // Hash password
         const salt = await bcrypt.genSalt(10);
         const passwordHash = await bcrypt.hash(password, salt);
 
@@ -108,8 +98,8 @@ async function register(req, res) {
             address,
             medicalHistory: medicalHistory || "",
             passwordHash,
-            identityProof, // Base64 string
-            medicalReport: medicalReport || "", // Base64 string
+            identityProof,
+            medicalReport: medicalReport || "", 
             registrationDate: new Date().toISOString(),
         };
 

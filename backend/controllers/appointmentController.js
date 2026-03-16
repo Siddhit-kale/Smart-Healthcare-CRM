@@ -1,15 +1,7 @@
-// ─────────────────────────────────────────────────────────────
-// backend/controllers/appointmentController.js
-// Handles appointment creation and retrieval
-// After creation → triggers Azure Function → Salesforce sync
-// ─────────────────────────────────────────────────────────────
 const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
 const { getContainers } = require("../cosmosdb");
 
-// ── POST /api/appointment ──────────────────────────────────
-// Body: { patientId, patientEmail, patientName, doctorId, doctorName,
-//         specialization, appointmentDate, appointmentTime, symptoms }
 async function createAppointment(req, res) {
     try {
         const {
@@ -50,7 +42,6 @@ async function createAppointment(req, res) {
     }
 }
 
-// ── GET /api/appointments/:patientId ──────────────────────
 async function getAppointments(req, res) {
     try {
         const { patientId } = req.params;

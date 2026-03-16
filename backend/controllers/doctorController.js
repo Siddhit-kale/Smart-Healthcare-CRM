@@ -1,9 +1,5 @@
-// ─────────────────────────────────────────────────────────────
-// backend/controllers/doctorController.js
-// ─────────────────────────────────────────────────────────────
 const { getContainers } = require("../cosmosdb");
 
-// ── GET /api/doctors ──────────────────────────────────────
 async function getDoctors(req, res) {
     try {
         const { doctorsContainer } = getContainers();

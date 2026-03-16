@@ -1,14 +1,7 @@
-// ─────────────────────────────────────────────────────────────
-// frontend/js/appointment.js
-// Appointment booking page logic
-// ─────────────────────────────────────────────────────────────
-
 const API_BASE = "";
 let patient = null;
 
-// ── On page load ────────────────────────────────────────────
 window.addEventListener("DOMContentLoaded", async () => {
-    // Guard: must be logged in
     const stored = sessionStorage.getItem("patient");
     if (!stored) {
         window.location.href = "login.html";
@@ -17,22 +10,17 @@ window.addEventListener("DOMContentLoaded", async () => {
     patient = JSON.parse(stored);
     document.getElementById("patientNameDisplay").textContent = patient.name || "Patient";
 
-    // Set min appointment date to today
     const dateInput = document.getElementById("appointmentDate");
     dateInput.min = new Date().toISOString().split("T")[0];
 
     await loadAppointments();
 });
 
-// ── Logout ───────────────────────────────────────────────────
 document.getElementById("logoutBtn").addEventListener("click", () => {
     sessionStorage.clear();
     window.location.href = "login.html";
 });
 
-// ── Doctor selection removed ──
-
-// ── Show alert ───────────────────────────────────────────────
 function showAlert(type, message) {
     const box = document.getElementById("alertBox");
     box.className = `alert-custom alert-${type}-custom`;
@@ -45,7 +33,6 @@ function hideAlert() {
     document.getElementById("alertBox").style.display = "none";
 }
 
-// ── Book appointment form submit ─────────────────────────────
 document.getElementById("appointmentForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     hideAlert();
@@ -85,10 +72,8 @@ document.getElementById("appointmentForm").addEventListener("submit", async (e) 
             `✅ Appointment booked for ${appointmentDate} at ${appointmentTime}.`
         );
 
-        // Reset form
         document.getElementById("appointmentForm").reset();
 
-        // Reload history
         await loadAppointments();
     } catch (err) {
         showAlert("error", err.message);
@@ -99,7 +84,6 @@ document.getElementById("appointmentForm").addEventListener("submit", async (e) 
     }
 });
 
-// ── Load appointment history ─────────────────────────────────
 async function loadAppointments() {
     const listEl = document.getElementById("appointmentList");
     if (!patient || !patient.id) return;

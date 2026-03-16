@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────────────────────
-// server.js (Root)
-// Express application entry point — updated for root deployment
-// ─────────────────────────────────────────────────────────────
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -16,7 +12,6 @@ const appointmentRoutes = require("./routes/appointments");
 const app = express();
 const PORT = process.env.PORT || 8080; // Azure typically uses 8080 or sets PORT automatically
 
-// ── Middleware ─────────────────────────────────────────────
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));

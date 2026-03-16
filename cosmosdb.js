@@ -11,11 +11,11 @@ const dbName = process.env.COSMOS_DATABASE || "HealthcareCRM";
 
 // ── Validate required env vars before creating the client ─────
 if (!endpoint || endpoint.includes("<your-cosmosdb-account>")) {
-    console.error("\n❌  COSMOS_ENDPOINT is not set correctly in your .env file.");
+    console.error("\nCOSMOS_ENDPOINT is not set correctly in your .env file.");
     process.exit(1);
 }
 if (!key || key.includes("<your-cosmosdb-primary-key>")) {
-    console.error("\n❌  COSMOS_KEY is not set correctly in your .env file.");
+    console.error("\nCOSMOS_KEY is not set correctly in your .env file.");
     process.exit(1);
 }
 

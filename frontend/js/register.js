@@ -80,37 +80,59 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     const medicalHistory = document.getElementById("medicalHistory").value.trim();
     const password = document.getElementById("password").value;
 
-    // File inputs
     const identityProofFile = document.getElementById("identityProof").files[0];
     const medicalReportFile = document.getElementById("medicalReport").files[0];
 
-    // Validation
-    if (!name) { showAlert("error", "Full name is required."); return; }
-    if (!password || password.length < 6) { showAlert("error", "Password must be at least 6 characters."); return; }
-    if (!age || age < 1 || age > 120) { showAlert("error", "Please enter a valid age (1–120)."); return; }
-    if (!dob) { showAlert("error", "Date of birth is required."); return; }
-    if (!gender) { showAlert("error", "Please select a gender."); return; }
-    if (!bloodGroup) { showAlert("error", "Please select a blood group."); return; }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showAlert("error", "Please enter a valid email address."); return;
+    if (!name) { 
+        showAlert("error", "Full name is required."); 
+        return; 
     }
+
+    if (!password || password.length < 6) {
+        showAlert("error", "Password must be at least 6 characters."); 
+        return; 
+    }
+    
+    if (!age || age < 1 || age > 120) { 
+        showAlert("error", "Please enter a valid age (1–120)."); 
+        return; 
+    }
+    
+    if (!dob) { 
+        showAlert("error", "Date of birth is required."); 
+        return; 
+    }
+    
+    if (!gender) { 
+        showAlert("error", "Please select a gender."); 
+        return; 
+    }
+    
+    if (!bloodGroup) { 
+        showAlert("error", "Please select a blood group."); 
+        return; 
+    }
+    
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showAlert("error", "Please enter a valid email address."); 
+        return;
+    }
+    
     if (!phone || !/^\d{10}$/.test(phone)) {
         showAlert("error", "Please enter a valid 10-digit phone number."); return;
     }
-    // Helper to validate and read file
+    
     const processFile = async (file, isRequired = false) => {
         if (!file) {
             if (isRequired) throw new Error("Identity Proof is required.");
             return "";
         }
 
-        // Limit: 2MB
         const MAX_SIZE = 2 * 1024 * 1024;
         if (file.size > MAX_SIZE) {
             throw new Error(`File "${file.name}" exceeds the 2MB limit.`);
         }
 
-        // Type check
         const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png"];
         if (!allowedTypes.includes(file.type)) {
             throw new Error(`File "${file.name}" has an invalid type. Only PDF, JPG, and PNG are allowed.`);
@@ -142,7 +164,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         const data = await response.json();
 
         if (response.status === 409) {
-            // Already registered — redirect to appointment
             sessionStorage.setItem("patient", JSON.stringify(data.patient));
             showAlert("info", "Account already exists. Redirecting to appointment booking...");
             setTimeout(() => { window.location.href = "appointment.html"; }, 1500);
@@ -152,8 +173,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         if (!response.ok) {
             throw new Error(data.error || "Registration failed.");
         }
-
-        // Success
+        
         sessionStorage.setItem("patient", JSON.stringify(data.patient));
         sessionStorage.removeItem("loginIdentifier");
         showAlert("success", "Registration successful! Redirecting to appointment booking...");

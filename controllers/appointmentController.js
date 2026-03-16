@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────────────────────
-// controllers/appointmentController.js
-// Handles appointment creation and retrieval
-// ─────────────────────────────────────────────────────────────
 const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
 const { getContainers } = require("../cosmosdb");
