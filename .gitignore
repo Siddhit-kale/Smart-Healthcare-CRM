@@ -7,3 +7,4 @@ dist/
 local.settings.json
 .env.example
 README.md
+database/schema.md

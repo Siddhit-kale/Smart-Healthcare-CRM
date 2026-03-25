@@ -23,6 +23,9 @@ async function createAppointment(req, res) {
             patientId,
             patientEmail: patientEmail || "",
             patientName: patientName || "",
+            doctorId: doctorId || "",
+            doctorName: doctorName || "",
+            specialization: specialization || "",
             appointmentDate,
             appointmentTime,
             symptoms: symptoms || "",
@@ -48,10 +51,13 @@ async function getAppointments(req, res) {
         const { appointmentsContainer } = getContainers();
 
         const { resources } = await appointmentsContainer.items
-            .query({
-                query: "SELECT * FROM c WHERE c.patientId = @pid ORDER BY c.createdAt DESC",
-                parameters: [{ name: "@pid", value: patientId }],
-            })
+            .query(
+                {
+                    query: "SELECT * FROM c WHERE c.patientId = @pid ORDER BY c.createdAt DESC",
+                    parameters: [{ name: "@pid", value: patientId }],
+                },
+                { partitionKey: patientId, enableCrossPartitionQuery: true }
+            )
             .fetchAll();
 
         res.json({ appointments: resources });
