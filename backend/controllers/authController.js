@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const { getContainers } = require("../cosmosdb");
+const { triggerSalesforceSync } = require("../utils/salesforceSync");
 
 async function login(req, res) {
     try {
@@ -66,7 +67,6 @@ async function register(req, res) {
 
         const { patientsContainer } = getContainers();
 
-        // Check if patient already exists
         const { resources: existing } = await patientsContainer.items
             .query({
                 query: "SELECT * FROM c WHERE c.email = @email",
@@ -99,11 +99,13 @@ async function register(req, res) {
             medicalHistory: medicalHistory || "",
             passwordHash,
             identityProof,
-            medicalReport: medicalReport || "", 
+            medicalReport: medicalReport || "",
             registrationDate: new Date().toISOString(),
         };
 
         const { resource } = await patientsContainer.items.create(patient);
+
+        await triggerSalesforceSync(resource, "patient");
 
         return res.status(201).json({ message: "Patient registered successfully.", patient: resource });
     } catch (err) {

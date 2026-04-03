@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const { getContainers } = require("../cosmosdb");
+const { triggerSalesforceSync } = require("../utils/salesforceSync");
 
 async function createAppointment(req, res) {
     try {
@@ -33,6 +34,9 @@ async function createAppointment(req, res) {
         };
 
         const { resource } = await appointmentsContainer.items.create(appointment);
+
+        // Salesforce Sync
+        await triggerSalesforceSync(resource, "appointment");
 
         return res.status(201).json({
             message: "Appointment booked successfully.",
